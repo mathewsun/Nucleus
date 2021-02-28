@@ -2,14 +2,16 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import AuthStore from '@/stores/auth-store';
 import accountLayout from '@/account/account-layout.vue';
-import adminLayout from '@/admin/admin-layout.vue';
+import newsLayout from '@/news/news-layout.vue';
+import layout from '@/home/layout.vue';
+
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        { path: '/', redirect: '/admin/home' },
+        { path: '/', redirect: '/home' },
         {
             path: '/account',
             component: accountLayout,
@@ -22,14 +24,25 @@ const router = new VueRouter({
         },
         {
             path: '/admin',
-            component: adminLayout,
+            component: layout,
             meta: { requiresAuth: true },
             children: [
-                { path: 'home', component: require('@/admin/views/home/home.vue').default },
                 { path: 'user-list', component: require('@/admin/views/users/user-list.vue').default },
-                { path: 'role-list', component: require('@/admin/views/roles/role-list.vue').default }
+                { path: 'role-list', component: require('@/admin/views/roles/role-list.vue').default },
+                { path: 'create-news', component: require('@/admin/views/news/create/create-news.vue').default },
+                { path: 'exceptions', component: require('@/admin/views/exceptions/list/exceptions-list.vue').default }
             ]
-        }
+        },
+        {
+            path: '/home',
+            component: layout,
+            meta: { requiresAuth: true },
+            children: [
+                { path: '', component: require('@/home/views/home-page.vue').default },
+                { path: 'news-list', component: require('@/home/views/news/list/news-list.vue').default }
+            ]
+        },
+
     ]
 });
 

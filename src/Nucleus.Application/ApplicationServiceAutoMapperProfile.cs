@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Nucleus.Application.News.Dto;
 using Nucleus.Application.Permissions.Dto;
 using Nucleus.Application.Roles.Dto;
 using Nucleus.Application.Users.Dto;
@@ -17,6 +18,7 @@ namespace Nucleus.Application
             
             CreateMap<User, UserListOutput>();
             CreateMap<Permission, PermissionDto>();
+            CreateMap<Core.News.News, NewsListOutput>();
             CreateMap<Role, RoleDto>();
             CreateMap<Role, RoleListOutput>();
         }

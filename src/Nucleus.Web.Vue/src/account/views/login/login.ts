@@ -13,7 +13,7 @@ export default class LoginComponent extends NucleusComponentBase {
                 .then((response) => {
                     if (!response.isError) {
                         this.authStore.setToken(response.content.token);
-                        this.$router.push({ path: '/admin/home' });
+                        this.$router.push({ path: '/home' });
                     } else {
                         this.errors = response.errors;
                     }
